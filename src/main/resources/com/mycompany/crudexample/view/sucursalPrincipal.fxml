@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="com.mycompany.crudexample.controller.SucursalPrincipalController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Sucursal">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableSucursal" layoutX="14.0" layoutY="47.0" prefHeight="303.0" prefWidth="572.0">
+        <columns>
+          <TableColumn fx:id="codigo" prefWidth="75.0" text="Código" />
+          <TableColumn fx:id="nombre" prefWidth="256.0" text="Nombre" />
+          <TableColumn fx:id="ciudad" prefWidth="240.0" text="Ciudad" />
+        </columns>
+      </TableView>
+      <Button layoutX="188.0" layoutY="361.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Nueva Sucursal" textFill="WHITE" onAction="#nuevaSucursal"/>
+      <Button layoutX="302.0" layoutY="361.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Eliminar Sucursal" textFill="WHITE" onAction="#eliminarSucursal"  />
+   </children>
+</AnchorPane>
