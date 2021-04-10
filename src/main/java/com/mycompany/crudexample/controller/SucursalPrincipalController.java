@@ -9,6 +9,7 @@ import com.mycompany.crudexample.App;
 import com.mycompany.crudexample.model.Sucursal;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,12 +38,7 @@ public class SucursalPrincipalController implements Initializable {
 
     @FXML
     private TableColumn<Sucursal, String> ciudad;
-    
-    ObservableList<Sucursal> data = FXCollections.observableArrayList(
-            new Sucursal(1,"Sucursal 1","Guatemala"),
-            new Sucursal(2,"Sucursal 2","Mixco"),
-            new Sucursal(3,"Sucursal 3","San Juan"));
-    
+        
     /**
      * Initializes the controller class.
      */
@@ -72,7 +68,11 @@ public class SucursalPrincipalController implements Initializable {
             return row;
         });
         
-        tableSucursal.setItems(data);
+        try {
+            tableSucursal.setItems(new Sucursal().listar());
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
     
     @FXML
@@ -81,6 +81,12 @@ public class SucursalPrincipalController implements Initializable {
         
         if (sucursal != null) {
             System.out.println(sucursal);
+            try {
+                sucursal.eliminar(sucursal);
+                tableSucursal.setItems(new Sucursal().listar());
+            } catch (SQLException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
             //Put code to remove item here
         }
     }

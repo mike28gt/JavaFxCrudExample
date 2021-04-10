@@ -9,6 +9,7 @@ import com.mycompany.crudexample.App;
 import com.mycompany.crudexample.model.Sucursal;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,6 +45,12 @@ public class SucursalAgregarEliminarController implements Initializable  {
     @FXML
     public void guardar() {
         Sucursal sucursal = new Sucursal(0,txtNombre.getText(), txtCiudad.getText());
+        try {
+            sucursal.guardar(sucursal);
+            regresar();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
         System.out.println(sucursal);
     }
     
