@@ -5,14 +5,15 @@
  */
 package com.mycompany.crudexample.controller;
 
+import com.google.common.eventbus.EventBus;
 import com.mycompany.crudexample.App;
+import com.mycompany.crudexample.model.EventBusFactory;
 import com.mycompany.crudexample.model.Sucursal;
+import com.mycompany.crudexample.model.UpdateSucursalEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -38,7 +39,9 @@ public class SucursalPrincipalController implements Initializable {
 
     @FXML
     private TableColumn<Sucursal, String> ciudad;
-        
+    
+    EventBus eventBus = EventBusFactory.getEventBus();
+    
     /**
      * Initializes the controller class.
      */
@@ -98,6 +101,8 @@ public class SucursalPrincipalController implements Initializable {
     
     private void editarSucursal(Sucursal sucursal) throws IOException {
         App.setRoot("/com/mycompany/crudexample/view/sucursalAgregarEliminar");
+        UpdateSucursalEvent sucursalEvent = new UpdateSucursalEvent(sucursal);
+        eventBus.post(sucursalEvent);
     }
     
     

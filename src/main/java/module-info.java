@@ -3,6 +3,7 @@ module com.mycompany.crudexample {
     requires javafx.fxml;
     requires java.base;
     requires java.sql;
+    requires com.google.common;
 
     opens com.mycompany.crudexample to javafx.fxml;
     exports com.mycompany.crudexample;
